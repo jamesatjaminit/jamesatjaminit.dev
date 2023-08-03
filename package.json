@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "deploy": "wrangler pages deploy dist --project-name jamesatjaminit-dev"
+    "deploy": "wrangler pages deploy dist --project-name jamesatjaminit-dev --branch main"
   },
   "dependencies": {
     "@astrojs/react": "^2.1.1",
