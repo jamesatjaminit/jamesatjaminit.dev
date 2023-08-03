@@ -14,6 +14,6 @@ tasks:
   - upload: |
       cd jamesatjaminit.dev
       set +x
-      CF_TOKEN=$(cat ~/.cloudflarePagesSecret)
+      CLOUDFLARE_API_TOKEN=$(cat ~/.cloudflarePagesSecret)
       set +x
       pnpm run deploy
