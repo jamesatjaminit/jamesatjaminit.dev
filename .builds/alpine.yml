@@ -1,0 +1,16 @@
+image: alpine/edge
+packages:
+  - nodejs
+  - npm
+  - pnpm
+secrets:
+  - 0c633326-8886-49be-987f-ef671dd71b57 # CF pages token
+tasks:
+  - package: |
+      cd jamesatjaminit.dev
+      pnpm install
+      pnpm run build
+
+  - upload: |
+      CF_TOKEN=$(cat ~/.cloudflarePagesTocket)
+      pnpm run deploy

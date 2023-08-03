@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "wrangler pages deploy dist --project-name jamesatjaminit-dev"
   },
   "dependencies": {
     "@astrojs/react": "^2.1.1",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "prettier": "^2.8.8",
-    "prettier-plugin-astro": "^0.8.0"
+    "prettier-plugin-astro": "^0.8.0",
+    "wrangler": "^3.4.0"
   }
 }
