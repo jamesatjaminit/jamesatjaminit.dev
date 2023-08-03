@@ -4,7 +4,7 @@ packages:
   - npm
   - pnpm
 secrets:
-  - 0c633326-8886-49be-987f-ef671dd71b57 # CF pages token
+  - 82c13a71-a682-4aaf-8488-77f040a75512 # CF pages token
 tasks:
   - package: |
       cd jamesatjaminit.dev
