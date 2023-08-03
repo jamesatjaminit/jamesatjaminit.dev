@@ -12,5 +12,6 @@ tasks:
       pnpm run build
 
   - upload: |
+      cd jamesatjaminit.dev
       CF_TOKEN=$(cat ~/.cloudflarePagesTocket)
       pnpm run deploy
