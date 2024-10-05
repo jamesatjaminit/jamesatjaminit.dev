@@ -1,0 +1,19 @@
+---
+const { title } = Astro.props;
+import "./page.css";
+---
+
+<html lang="en">
+  <head>
+		<!-- Hi :) -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body
+    class="font-mono dark:text-neutral-50 bg-slate-100 dark:bg-neutral-800 text-sm transition-colors"
+  >
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,64 @@
+---
+import { Octokit } from "@octokit/rest";
+import Page from "../layouts/Page.astro";
+const socialLinks = [
+  { link: "https://github.com/jamesatjaminit", text: "Github" },
+  { link: "mailto:james@jaminit.co.uk", text: "Email" },
+] as const satisfies { link: string; text: string }[];
+
+const projects = [
+  "classchartsapi/classcharts-api-js",
+  "jamesatjaminit/classcharts-to-ical",
+  "jaminitbot/Jam-Bot",
+  "jamesatjaminit/jamesatjaminit.dev",
+] as const satisfies string[];
+const octokit = new Octokit({
+  auth: import.meta.env.GITHUB_TOKEN,
+});
+const enrichedProjects: {
+  link: string;
+  text: string;
+  description: string | null;
+  archived: boolean;
+}[] = [];
+for (const project of projects) {
+  const repo = await octokit.repos.get({
+    owner: project.split("/")[0],
+    repo: project.split("/")[1],
+  });
+  enrichedProjects.push({
+    link: `https://github.com/${project}`,
+    text: project,
+    description: repo.data.description,
+    archived: repo.data.archived,
+  });
+}
+---
+
+<Page title="James Cook">
+  <div class="container m-10 max-w-sm">
+    <h1 class="text-2xl font-bold mb-1">James Cook</h1>
+    {
+      socialLinks.map((social, index) => (
+        <>
+          {index > 0 && " | "}
+          <a href={social.link}>{social.text}</a>
+        </>
+      ))
+    }
+    <h2 class="text-lg mt-4">Projects</h2>
+    <div class="mt-2 flex flex-col gap-5">
+      {
+        enrichedProjects.map((project) => (
+          <div>
+            <a href={project.link}>{project.text}</a>{" "}
+            {project.archived && (
+              <span class="text-gray-500 dark:text-gray-400">(archived)</span>
+            )}
+            <p class="mt-1">{project.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Page>
