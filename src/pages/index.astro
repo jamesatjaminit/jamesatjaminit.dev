@@ -23,10 +23,12 @@ const enrichedProjects: {
   archived: boolean;
 }[] = [];
 for (const project of projects) {
+  const projectSplit = project.split("/");
   const repo = await octokit.repos.get({
-    owner: project.split("/")[0],
-    repo: project.split("/")[1],
+    owner: projectSplit[0],
+    repo: projectSplit[1],
   });
+  if (repo.status !== 200) continue;
   enrichedProjects.push({
     link: `https://github.com/${project}`,
     text: project,
@@ -56,7 +58,7 @@ for (const project of projects) {
             {project.archived && (
               <span class="text-gray-500 dark:text-gray-400">(archived)</span>
             )}
-            <p class="mt-1">{project.description}</p>
+            {project.description && <p class="mt-1">{project.description}</p>}
           </div>
         ))
       }
