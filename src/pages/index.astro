@@ -54,9 +54,9 @@ for (const project of projects) {
       {
         enrichedProjects.map((project) => (
           <div>
-            <a href={project.link}>{project.text}</a>{" "}
+            <a href={project.link}>{project.text}</a>
             {project.archived && (
-              <span class="text-gray-500 dark:text-gray-400">(archived)</span>
+              <span class="text-gray-500 dark:text-gray-400"> (archived)</span>
             )}
             {project.description && <p class="mt-1">{project.description}</p>}
           </div>
